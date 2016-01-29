@@ -1,6 +1,6 @@
 {
   "name": "split-join-stream",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Split inbound stream into messages with a delimeter, append this delimiter to outgoing chunks",
   "main": "index.js",
   "scripts": {
@@ -13,6 +13,7 @@
   "typescript": {
     "definition": "split-join-stream.d.ts"
   },
+  "typings": "./split-join-stream.d.ts",
   "keywords": [
     "stream",
     "split",
@@ -24,11 +25,6 @@
   "bugs": {
     "url": "https://github.com/IlyaBiryukov/message-boundary-node-stream/issues"
   },
-  "files": [
-    "LICENSE",
-    "index.js",
-    "split-join-stream.d.ts"
-  ],
   "homepage": "https://github.com/IlyaBiryukov/message-boundary-node-stream#readme",
   "dependencies": {
     "split": "^1.0.0"

@@ -3,10 +3,10 @@
 var split = require('split');
 var Transform = require('stream').Transform;
 
-function splitJoinStream(readable, target, writeable, delimiter) {
+function splitJoinStream(readable, target, writable, delimiter) {
     var delimiterBuffer;
 
-    if (!readable && !writeable) {
+    if (!readable && !writable) {
         throw new Error('readable and writeable are both not defined. At least one of them should be specified.');
     }
 
@@ -25,9 +25,9 @@ function splitJoinStream(readable, target, writeable, delimiter) {
         readable.pipe(split(delimiter, null, {trailing: false})).pipe(target);
     }
 
-    if (writeable) {
+    if (writable) {
         delimiterBuffer = new Buffer(delimiter);
-        target.pipe(new Transform({transform: addDelmiter})).pipe(writeable);
+        target.pipe(new Transform({transform: addDelmiter})).pipe(writable);
     }
 
     return target;
