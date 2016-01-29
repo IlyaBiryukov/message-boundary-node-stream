@@ -1,5 +1,5 @@
 {
-  "name": "splitJoinStream",
+  "name": "split-join-stream",
   "version": "1.0.0",
   "description": "Split inbound stream into messages with a delimeter, append this delimiter to outgoing chunks",
   "main": "index.js",
