@@ -1,0 +1,32 @@
+{
+  "name": "respect-boundary-node-stream",
+  "version": "1.0.0",
+  "description": "Split inbound stream into messages with a delimeter, append this delimiter to outgoing chunks",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IlyaBiryukov/message-boundary-node-stream.git"
+  },
+  "keywords": [
+    "stream",
+    "split",
+    "join",
+    "delimiter"
+  ],
+  "author": "IlyaBiryukov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/IlyaBiryukov/message-boundary-node-stream/issues"
+  },
+  "homepage": "https://github.com/IlyaBiryukov/message-boundary-node-stream#readme",
+  "dependencies": {
+    "split": "^1.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^2.4.5",
+    "should": "^8.2.1"
+  }
+}
