@@ -10,6 +10,9 @@
     "type": "git",
     "url": "git+https://github.com/IlyaBiryukov/message-boundary-node-stream.git"
   },
+  "typescript": {
+    "definition": "splitJoinStream.d.ts"
+  },
   "keywords": [
     "stream",
     "split",
