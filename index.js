@@ -3,13 +3,38 @@
 var split = require('split');
 var Transform = require('stream').Transform;
 
-function splitJoinStream(readable, target, writable, delimiter) {
-    var delimiterBuffer = new Buffer(delimiter);
+function splitJoinStream(readable, target, writeable, delimiter) {
+    var delimiterBuffer;
 
-    readable.pipe(split(delimiter, null, {trailing: false})).pipe(target).pipe(new Transform({transform: addDelmiter})).pipe(writable);
+    if (!readable && !writeable) {
+        throw new Error('readable and writeable are both not defined. At least one of them should be specified.');
+    }
+
+    if (!target) {
+        throw new Error('target is not defined');
+    }
+
+    if (delimiter === undefined) {
+        delimiter = '\0';
+    }
+    else if (delimiter === '') {
+        throw new Error('delimiter cannot be an empty string');
+    }
+
+    if (readable) {
+        readable.pipe(split(delimiter, null, {trailing: false})).pipe(target);
+    }
+
+    if (writeable) {
+        delimiterBuffer = new Buffer(delimiter);
+        target.pipe(new Transform({transform: addDelmiter})).pipe(writeable);
+    }
+
+    return target;
 
     function addDelmiter(chunk, enc, cb) {
-        cb(null, Buffer.isBuffer(chunk) ? Buffer.concat([chunk, delimiterBuffer]) : chunk.concat(delimiter));
+        var newChunk = Buffer.isBuffer(chunk) ? Buffer.concat([chunk, delimiterBuffer]) : chunk.concat(delimiter);
+        cb(null, newChunk);
     }
 }
 
