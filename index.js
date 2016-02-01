@@ -1,7 +1,7 @@
 /* global Buffer */
 
 var split = require('split');
-var Transform = require('stream').Transform;
+var through = require('through');
 
 function splitJoinStream(readable, target, writable, delimiter) {
     var delimiterBuffer;
@@ -27,14 +27,14 @@ function splitJoinStream(readable, target, writable, delimiter) {
 
     if (writable) {
         delimiterBuffer = new Buffer(delimiter);
-        target.pipe(new Transform({transform: addDelmiter})).pipe(writable);
+        target.pipe(through(addDelmiter)).pipe(writable);
     }
 
     return target;
 
-    function addDelmiter(chunk, enc, cb) {
+    function addDelmiter(chunk) {
         var newChunk = Buffer.isBuffer(chunk) ? Buffer.concat([chunk, delimiterBuffer]) : chunk.concat(delimiter);
-        cb(null, newChunk);
+        this.queue(newChunk);
     }
 }
 

@@ -1,6 +1,6 @@
 {
   "name": "split-join-stream",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Split inbound stream into messages with a delimeter, append this delimiter to outgoing chunks",
   "main": "index.js",
   "scripts": {
@@ -27,10 +27,14 @@
   },
   "homepage": "https://github.com/IlyaBiryukov/message-boundary-node-stream#readme",
   "dependencies": {
-    "split": "^1.0.0"
+    "split": "^1.0.0",
+    "through": "2"
   },
   "devDependencies": {
     "mocha": "^2.4.5",
     "should": "^8.2.1"
+  },
+  "engines": {
+    "node": "*"
   }
 }
