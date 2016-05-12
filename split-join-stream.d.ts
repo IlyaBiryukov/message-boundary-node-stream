@@ -5,10 +5,10 @@
 /** Break up a readable stream of messages separated by the delimiter, and reassemble it so that each write to the target stream is a whole message.
  *  Read messages from the target stream, append the delimiter to them, and pipe that to the writeable. Utf8 encoding is used to encode the delimiter.
  */
-declare function splitJoinStream<T extends NodeJS.ReadWriteStream>(
+declare const splitJoinStream: <T extends NodeJS.ReadWriteStream>(
     readable: NodeJS.ReadableStream,
     target: T,
     writable?: NodeJS.WritableStream,
-    delimiter?: string): T;
+    delimiter?: string) => T;
 
 export = splitJoinStream;
